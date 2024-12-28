@@ -72,4 +72,85 @@ void main() {
       );
     },
   );
+
+  group(
+    'checkIfUserIsFirstTimer',
+    () {
+      test(
+        'should return true if user is first timer',
+        () async {
+          when(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).thenAnswer(
+            (invocation) async => Future.value(true),
+          );
+
+          final res = await repoImpl.checkIfUserIsFirstTimer();
+
+          expect(res, equals(const Right<dynamic, bool>(true)));
+
+          verify(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).called(1);
+
+          verifyNoMoreInteractions(localDataSrc);
+        },
+      );
+
+      test(
+        'should return false is user is not first timer',
+        () async {
+          when(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).thenAnswer(
+            (invocation) async => Future.value(false),
+          );
+
+          final res = await repoImpl.checkIfUserIsFirstTimer();
+
+          expect(res, equals(const Right<dynamic, bool>(false)));
+
+          verify(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).called(1);
+
+          verifyNoMoreInteractions(localDataSrc);
+        },
+      );
+
+      test(
+        'should return a [CacheFailure] when call '
+        'to local data source is unsucessful',
+        () async {
+          when(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).thenThrow(
+            const CacheException(
+              message: 'Insufficent Permission',
+              statusCode: 403,
+            ),
+          );
+
+          final res = await repoImpl.checkIfUserIsFirstTimer();
+
+          expect(
+            res,
+            equals(
+              Left<CacheFailure, bool>(
+                CacheFailure(
+                  message: 'Insufficent Permission',
+                  statusCode: 403,
+                ),
+              ),
+            ),
+          );
+          verify(
+            () => localDataSrc.checkIfUserIsFirstTimer(),
+          ).called(1);
+
+          verifyNoMoreInteractions(localDataSrc);
+        },
+      );
+    },
+  );
 }
