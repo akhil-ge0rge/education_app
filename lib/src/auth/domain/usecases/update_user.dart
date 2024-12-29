@@ -15,7 +15,7 @@ class UpdateUser extends UseCaseWithParams<void, UpdateUserParams> {
 }
 
 class UpdateUserParams extends Equatable {
-  const UpdateUserParams(this.userData, {required this.action});
+  const UpdateUserParams({required this.action, required this.userData});
 
   final UpdateUserAction action;
   final dynamic userData;
