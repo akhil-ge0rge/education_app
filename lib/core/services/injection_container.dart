@@ -1,40 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_app/src/auth/data/datasources/auth_remote_datasources.dart';
+import 'package:education_app/src/auth/data/repo/auth_repo_impl.dart';
+import 'package:education_app/src/auth/domain/repos/auth_repo.dart';
+import 'package:education_app/src/auth/domain/usecases/forgot_password.dart';
+import 'package:education_app/src/auth/domain/usecases/sign_in.dart';
+import 'package:education_app/src/auth/domain/usecases/sign_up.dart';
+import 'package:education_app/src/auth/domain/usecases/update_user.dart';
+import 'package:education_app/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:education_app/src/onboarding/data/datasources/onboarding_local_datasources.dart';
 import 'package:education_app/src/onboarding/data/repos/onboarding_repo_impl.dart';
+import 'package:education_app/src/onboarding/domain/repositories/onboarding_repository.dart';
 import 'package:education_app/src/onboarding/domain/usecase/cache_first_timer.dart';
 import 'package:education_app/src/onboarding/domain/usecase/check_if_user_is_first_timer.dart';
 import 'package:education_app/src/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../src/onboarding/data/datasources/onboarding_local_datasources.dart';
-import '../../src/onboarding/domain/repositories/onboarding_repository.dart';
-
-final sl = GetIt.instance;
-
-Future<void> init() async {
-  final prefs = await SharedPreferences.getInstance();
-  //OnBoardingFeature
-  sl
-    ..registerFactory(
-      () => OnboardingCubit(
-        cacheFirstTimer: sl(),
-        checkingIsUserFirstTimer: sl(),
-      ),
-    )
-    ..registerLazySingleton(
-      () => CacheFirstTimer(sl()),
-    )
-    ..registerLazySingleton(
-      () => CheckIfUserIsFirstTimer(
-        sl(),
-      ),
-    )
-    ..registerLazySingleton<OnboardingRepository>(
-      () => OnboardingRepoImpl(sl()),
-    )
-    ..registerLazySingleton<OnboardingLocalDatasources>(
-      () => OnboardingLocalDatasourcesImpl(sl()),
-    )
-    ..registerLazySingleton(
-      () => prefs,
-    );
-}
+part 'injection_container.main.dart';

@@ -20,11 +20,11 @@ class SignUpParams extends Equatable {
     required this.fullName,
     required this.password,
   });
+  const SignUpParams.empty() : this(email: '', password: '', fullName: '');
 
   final String email;
   final String fullName;
   final String password;
-
   @override
   List<Object?> get props => [email, password, fullName];
 }
