@@ -22,7 +22,7 @@ class OnboardingBody extends StatelessWidget {
           height: context.height * 0.4,
         ),
         SizedBox(
-          height: context.height * 0.03,
+          height: context.height * 0.06,
         ),
         Padding(
           padding: const EdgeInsets.all(20).copyWith(bottom: 0),

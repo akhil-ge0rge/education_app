@@ -35,7 +35,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             if (state is OnBoardingStatus && !state.isFirstTimer) {
               Navigator.of(context).pushReplacementNamed('/home');
             } else if (state is UserCached) {
-              //TODO(User Cached Handler): puhs to the appropriate screen
+              Navigator.of(context).pushReplacementNamed('/');
             }
           },
           builder: (BuildContext context, OnboardingState state) {
@@ -54,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ],
                 ),
                 Align(
-                  alignment: const Alignment(0, 0.4),
+                  alignment: const Alignment(0, 0.05),
                   child: SmoothPageIndicator(
                     effect: const WormEffect(
                       dotHeight: 10,
