@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,6 +51,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
   Future<void> forgotPassword({
     required String email,
   }) async {
+    print("F O R G O T P A S S W O R D");
     try {
       await _authClient.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
@@ -68,6 +70,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required String email,
     required String password,
   }) async {
+    print("S I G N I N");
     try {
       final result = await _authClient.signInWithEmailAndPassword(
         email: email,
@@ -108,22 +111,31 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required String fullName,
     required String password,
   }) async {
+    print("S I G N U P");
+    log(email + "email");
+    log(fullName + "fullName");
+    log(password + "pass");
     try {
       final userCred = await _authClient.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       await userCred.user?.updateDisplayName(fullName);
+
       await userCred.user?.updatePhotoURL(kDefaultAvatar);
 
       await _setUserData(_authClient.currentUser!, email);
     } on FirebaseAuthException catch (e) {
+      log(e.code);
+      log(e.message.toString());
       throw ServerException(
         message: e.message ?? 'Error Occoured',
         statusCode: e.code,
       );
     } catch (e, s) {
       debugPrintStack(stackTrace: s);
+      debugPrint(e.toString());
       throw ServerException(message: e.toString(), statusCode: '505');
     }
   }
@@ -133,6 +145,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required UpdateUserAction action,
     required dynamic userData,
   }) async {
+    print("U P D A T E U S E R");
     try {
       switch (action) {
         case UpdateUserAction.email:

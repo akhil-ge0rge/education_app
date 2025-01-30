@@ -14,7 +14,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Placeholder(
       child: Center(
         child: Text(
-          'Sign In Screen',
+          'Dash Board',
           style:
               context.theme.textTheme.bodyLarge?.copyWith(color: Colors.white),
         ),

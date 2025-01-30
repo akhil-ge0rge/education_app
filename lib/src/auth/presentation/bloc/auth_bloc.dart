@@ -1,7 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:education_app/core/enums/update_user.dart';
 import 'package:education_app/src/auth/domain/entities/user.dart';
 import 'package:education_app/src/auth/domain/usecases/forgot_password.dart';
@@ -49,7 +48,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-      (failure) => emit(AuthError(message: failure.errorMessage)),
+      (failure) {
+        log(failure.errorMessage);
+        emit(AuthError(message: failure.errorMessage));
+      },
       (user) => emit(SignedIn(user: user)),
     );
   }
@@ -66,7 +68,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-      (failure) => emit(AuthError(message: failure.errorMessage)),
+      (failure) {
+        log(failure.errorMessage);
+        emit(AuthError(message: failure.errorMessage));
+      },
       (user) => emit(const SignedUp()),
     );
   }
@@ -77,7 +82,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     final result = await _forgotPassword(event.email);
     result.fold(
-      (l) => emit(AuthError(message: l.errorMessage)),
+      (l) {
+        log(l.errorMessage);
+        emit(AuthError(message: l.errorMessage));
+      },
       (_) => emit(const ForgotPasswordSend()),
     );
   }
@@ -93,7 +101,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
     result.fold(
-      (l) => emit(AuthError(message: l.errorMessage)),
+      (l) {
+        log(l.errorMessage);
+        emit(AuthError(message: l.errorMessage));
+      },
       (r) => emit(const UserUpdated()),
     );
   }
