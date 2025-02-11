@@ -1,7 +1,7 @@
 import 'package:education_app/core/common/app/providers/user_provider.dart';
 import 'package:education_app/core/res/colors.dart';
 import 'package:education_app/src/auth/data/model/user_model.dart';
-import 'package:education_app/src/dashboard/providers/dashboard_controller.dart';
+import 'package:education_app/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:education_app/src/dashboard/utils/dashboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
