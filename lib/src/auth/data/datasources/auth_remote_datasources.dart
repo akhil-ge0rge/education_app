@@ -51,7 +51,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
   Future<void> forgotPassword({
     required String email,
   }) async {
-    print("F O R G O T P A S S W O R D");
+    print('F O R G O T P A S S W O R D');
     try {
       await _authClient.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
@@ -70,7 +70,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required String email,
     required String password,
   }) async {
-    print("S I G N I N");
+    print('S I G N I N');
     try {
       final result = await _authClient.signInWithEmailAndPassword(
         email: email,
@@ -111,10 +111,10 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required String fullName,
     required String password,
   }) async {
-    print("S I G N U P");
-    log(email + "email");
-    log(fullName + "fullName");
-    log(password + "pass");
+    print('S I G N U P');
+    log('${email}email');
+    log('${fullName}fullName');
+    log('${password}pass');
     try {
       final userCred = await _authClient.createUserWithEmailAndPassword(
         email: email,
@@ -145,7 +145,7 @@ class AuthRemoteDatasourcesImpl implements AuthRemoteDatasources {
     required UpdateUserAction action,
     required dynamic userData,
   }) async {
-    print("U P D A T E U S E R");
+    print('U P D A T E U S E R');
     try {
       switch (action) {
         case UpdateUserAction.email:

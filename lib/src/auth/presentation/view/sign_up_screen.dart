@@ -8,7 +8,6 @@ import 'package:education_app/src/auth/data/model/user_model.dart';
 import 'package:education_app/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education_app/src/auth/presentation/view/sign_in_screen.dart';
 import 'package:education_app/src/auth/presentation/widgets/sign_up_form.dart';
-import 'package:education_app/src/auth/presentation/widgets/sing_in_form.dart';
 import 'package:education_app/src/dashboard/presentation/view/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

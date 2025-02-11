@@ -24,7 +24,7 @@ class CoreUtils {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
-            )),
+            ),),
       );
   }
 }

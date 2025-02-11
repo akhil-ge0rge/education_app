@@ -3,7 +3,6 @@ import 'package:education_app/core/res/colors.dart';
 import 'package:education_app/core/res/fonts.dart';
 import 'package:education_app/src/onboarding/domain/entities/page_content.dart';
 import 'package:education_app/src/onboarding/presentation/cubit/onboarding_cubit.dart';
-import 'package:education_app/src/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
