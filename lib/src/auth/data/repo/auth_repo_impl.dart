@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:education_app/core/enums/update_user.dart';
 import 'package:education_app/core/errors/exception.dart';
@@ -41,7 +43,14 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
   }) async {
     try {
-      await _remoteDataSource.signIn(email: email, password: password);
+      log(email);
+      log(fullName);
+      log(password);
+      await _remoteDataSource.signUp(
+        email: email,
+        password: password,
+        fullName: fullName,
+      );
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, statusCode: e.statusCode));

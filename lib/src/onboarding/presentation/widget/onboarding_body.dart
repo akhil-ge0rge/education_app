@@ -3,7 +3,6 @@ import 'package:education_app/core/res/colors.dart';
 import 'package:education_app/core/res/fonts.dart';
 import 'package:education_app/src/onboarding/domain/entities/page_content.dart';
 import 'package:education_app/src/onboarding/presentation/cubit/onboarding_cubit.dart';
-import 'package:education_app/src/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +21,7 @@ class OnboardingBody extends StatelessWidget {
           height: context.height * 0.4,
         ),
         SizedBox(
-          height: context.height * 0.03,
+          height: context.height * 0.06,
         ),
         Padding(
           padding: const EdgeInsets.all(20).copyWith(bottom: 0),
